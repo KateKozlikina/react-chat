@@ -1,17 +1,32 @@
-import React, { Component } from 'react';
-import Welcome from './welcome.js';
-import Clock from './clock.js';
-import List from './List';
+import React from 'react';
+import { withStyles } from '@material-ui/core/styles';
+import Sidebar from './components/Sidebar';
+import ChatHeader from './components/ChatHeader';
+import Chat from './components/Chat';
+import { chats, messages } from './mock-data';
 
-class App extends Component {
-  
+const styles = theme => ({
+  root: {
+    position: 'relative',
+    display: 'flex',
+  },
+});
+
+class App extends React.Component {
+
   render() {
-    return (
-      <div >
-          <h1>Chat</h1>
-      </div>
-    );
-  }
+    const { classes } = this.props;
+
+  return (
+    <div className={classes.root}>
+     
+      <ChatHeader />
+      <Sidebar chats={chats}/>
+      <Chat messages={messages}/>
+
+    </div>
+  );
+}
 }
 
-export default App;
+export default withStyles(styles)(App);
